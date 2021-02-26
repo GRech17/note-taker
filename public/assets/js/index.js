@@ -1,8 +1,8 @@
-let noteTitle = ('.note-title');
-let noteText = ('.note-textarea');
-let saveNoteBtn = ('.save-note');
-let newNoteBtn = ('.new-note');
-let noteList = ('.list-container .list-group');
+let noteTitle;
+let noteText;
+let saveNoteBtn;
+let newNoteBtn;
+let noteList;
 
 if (window.location.pathname === '/notes') {
   noteTitle = document.querySelector('.note-title');
@@ -32,7 +32,7 @@ const getNotes = () =>
       'Content-Type': 'application/json',
     },
   });
-// saves notes to db
+
 const saveNote = (note) =>
   fetch('/api/notes', {
     method: 'POST',
@@ -42,7 +42,6 @@ const saveNote = (note) =>
     body: JSON.stringify(note),
   });
 
-// deletes notes from db  
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
     method: 'DELETE',
@@ -51,7 +50,6 @@ const deleteNote = (id) =>
     },
   });
 
-// if there is an active note, display it   
 const renderActiveNote = () => {
   hide(saveNoteBtn);
 
@@ -66,7 +64,6 @@ const renderActiveNote = () => {
   }
 };
 
-// get note data from inputs, save to db and update
 const handleNoteSave = () => {
   const newNote = {
     title: noteTitle.value,
