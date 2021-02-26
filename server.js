@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 
-/*  GET REQUEST */
+//  GET REQUEST 
 app.get('/api/notes', (req, res) => {
     fs.readFile('db/db.json', 'utf8', function (err, contents) {
       var words = JSON.parse(contents);
@@ -19,7 +19,7 @@ app.get('/api/notes', (req, res) => {
   });
   
   
-  /*  POST REQUEST */
+//  POST REQUEST 
 app.post('/api/notes', (req, res) => {
     fs.readFile('db/db.json', (err, data) => {
       // Check for error
@@ -44,7 +44,7 @@ app.post('/api/notes', (req, res) => {
     });
 });
   
-/* DELETE REQUEST */
+// DELETE REQUEST 
 app.delete('/api/notes/:id', (req, res) => {
   
     fs.readFile('db/db.json', (err, data) => {
@@ -69,7 +69,7 @@ app.delete('/api/notes/:id', (req, res) => {
   
   })
 
-// routes \\
+// ROUTES 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
 });
@@ -77,7 +77,6 @@ app.get('/', (req, res) => {
 app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, './public/notes.html'));
 });
-
 
 app.use(express.static(path.join(__dirname, 'public')));
 
