@@ -21,11 +21,11 @@ app.get('/api/notes', (req, res) => {
   
 //  POST REQUEST 
 app.post('/api/notes', (req, res) => {
-    fs.readFile('db/db.json', (err, data) => {
+    fs.readFile('db/db.json', (err, contents) => {
       // Check for error
       if (err) throw err;
       // Handle data gathering for json update
-      let json = JSON.parse(data);
+      let json = JSON.parse(contents);
       let note = {
         title: req.body.title,
         text: req.body.text,
@@ -47,12 +47,12 @@ app.post('/api/notes', (req, res) => {
 // DELETE REQUEST 
 app.delete('/api/notes/:id', (req, res) => {
   
-    fs.readFile('db/db.json', (err, data) => {
+    fs.readFile('db/db.json', (err, contents) => {
       // Check for error
       if (err) throw err;
       let deleteId = req.params.id;
       // Handle data gathering for json update
-      let json = JSON.parse(data);
+      let json = JSON.parse(contents);
       json.forEach((item, i) => {
         if (item.id.includes(deleteId)) {
           json.splice(i, 1);
